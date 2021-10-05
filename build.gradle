@@ -1,0 +1,19 @@
+plugins {
+    id 'com.palantir.docker' version "${dockerPluginVersion}" apply false
+    id 'com.palantir.docker-run' version "${dockerPluginVersion}" apply false
+    id 'com.palantir.docker-compose' version "${dockerPluginVersion}"
+}
+
+group 'com.al'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'com.palantir.docker'
+    apply plugin: 'com.palantir.docker-run'
+
+    project.version = rootProject.version
+}

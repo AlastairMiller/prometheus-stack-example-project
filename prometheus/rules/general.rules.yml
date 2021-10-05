@@ -1,0 +1,29 @@
+groups:
+  - name: general
+    rules:
+#      Just some example rules useful for apps that expose jvm metrics
+      - alert: ApplicationDown
+        expr: up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: Application '{{ $labels.application }}' in environment '{{ $labels.environment }}' is down
+          description: Application '{{ $labels.application }}' in environment '{{ $labels.environment }}' has been down for more then 5 minutes
+      - alert: MemoryUsage
+        expr: sum(jvm_memory_used_bytes{area="heap"}) by (application, environment) /
+          sum(jvm_memory_max_bytes{area="heap"}) by (application, environment) * 100 > 95
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summmary: Memory alert for application '{{ $labels.application }}' in environment '{{ $labels.instance }}'
+          description: Application '{{ $labels.application }}' in environment '{{ $labels.instance }}' memory usage is
+            high at {{ humanize $value}}%
+      - alert: HighDiskUsage
+        expr: (100 - (disk_free_bytes / disk_total_bytes) * 100) >= 85
+        labels:
+          severity: critical
+        annotations:
+          summary: 85% or greater disk is being used in application '{{ $labels.application }}'
+          description: 85% or greater disk is being used in application '{{ $labels.application }}' in environment {{ $labels.environment }}'
