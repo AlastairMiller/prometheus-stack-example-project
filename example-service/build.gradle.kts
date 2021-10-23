@@ -31,8 +31,10 @@ tasks.withType<KotlinCompile> {
 }
 
 docker {
-    files("prometheus.yml", "rules/general.rules.yml")
+    val artifactName = "${project.name}-${version}.jar"
+    files("build/libs/${artifactName}")
     name="com.al/${project.name}:${project.version}"
+    buildArgs(mapOf("APP_JAR" to artifactName))
 }
 
 dockerRun {

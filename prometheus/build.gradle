@@ -1,6 +1,3 @@
-repositories {
-    mavenCentral()
-}
 
 docker {
     files 'prometheus.yml', 'rules/general.rules.yml'
