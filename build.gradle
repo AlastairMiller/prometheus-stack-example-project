@@ -4,6 +4,9 @@ plugins {
     id 'com.palantir.docker-compose' version "${dockerPluginVersion}"
 }
 
+dependencies {
+    docker "project:Version:${project.version}"
+}
 group 'com.al'
 version '1.0-SNAPSHOT'
 
