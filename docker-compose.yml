@@ -1,11 +1,11 @@
 services:
   service:
     container_name: service
-    image: 'milleral/example-service:latest'
+    image: 'example/example-service:latest'
     ports:
       - "8080:8080"
   prometheus:
-    container_name: prom
-    image: 'milleral/prometheus:latest'
+    container_name: prometheus
+    image: 'example/prometheus:latest'
     ports:
       - "9090:9090"

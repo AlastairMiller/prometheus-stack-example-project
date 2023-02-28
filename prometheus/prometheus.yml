@@ -23,4 +23,4 @@ scrape_configs:
     # scheme defaults to 'http'.
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['service:8080']
+      - targets: ['example-service:8080']

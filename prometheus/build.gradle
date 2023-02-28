@@ -1,13 +1,13 @@
 
 docker {
     files 'prometheus.yml', 'rules/general.rules.yml'
-    tag 'latest', "milleral/${project.name}:latest"
-    name "milleral/${project.name}:${project.version}"
+    tag 'latest', "example/${project.name}:latest"
+    name "example/${project.name}:${project.version}"
 }
 
 dockerRun{
     name "${project.name}"
-    image "milleral/${project.name}:${project.version}"
+    image "example/${project.name}:${project.version}"
     ports '9090:9090'
     clean true
 }

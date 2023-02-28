@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.spring") version "1.4.32"
 }
 
-group "com.al"
+group "com.example"
 version "1.0-SNAPSHOT"
 
 repositories {
@@ -33,14 +33,14 @@ tasks.withType<KotlinCompile> {
 docker {
     val artifactName = "${project.name}-${version}.jar"
     files("build/libs/${artifactName}")
-    name="milleral/${project.name}:${project.version}"
-    tag("latest", "milleral/${project.name}:latest")
+    name="example/${project.name}:${project.version}"
+    tag("latest", "example/${project.name}:latest")
     buildArgs(mapOf("APP_JAR" to artifactName))
 }
 
 dockerRun {
     name="${project.name}"
-    image="milleral/${project.name}:${project.version}"
+    image="example/${project.name}:${project.version}"
     ports("8080:8080")
     clean=true
 }
