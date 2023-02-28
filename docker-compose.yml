@@ -1,6 +1,6 @@
 services:
-  service:
-    container_name: service
+  target:
+    container_name: target
     image: 'example/example-service:latest'
     ports:
       - "8080:8080"
