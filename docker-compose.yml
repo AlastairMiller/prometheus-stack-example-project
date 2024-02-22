@@ -1,3 +1,6 @@
+networks:
+  example-network:
+
 services:
   target:
     container_name: target
