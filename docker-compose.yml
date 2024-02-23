@@ -12,3 +12,13 @@ services:
     image: 'example/prometheus:latest'
     ports:
       - "9090:9090"
+  alertmanager:
+    container_name: alertmanager
+    image: 'prom/alertmanager:latest'
+    ports:
+      - "9093:9093"
+  grafana:
+    container_name: grafana
+    image: 'example/grafana:latest'
+    ports:
+      - "3000:3000"

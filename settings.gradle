@@ -1,5 +1,6 @@
 rootProject.name = 'PrometheusStackExampleProject'
-include 'prometheus'
 include 'example-service'
+include 'grafana'
+include 'prometheus'
 
 

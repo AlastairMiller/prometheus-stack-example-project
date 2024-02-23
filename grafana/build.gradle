@@ -1,0 +1,12 @@
+
+docker {
+    tag 'latest', "example/${project.name}:latest"
+    name "example/${project.name}:${project.version}"
+}
+
+dockerRun{
+    name "${project.name}"
+    image "example/${project.name}:${project.version}"
+    ports '3000:3000'
+    clean true
+}

@@ -1,4 +1,4 @@
-FROM prom/prometheus:v2.37.6
+FROM prom/prometheus:latest
 
 ADD prometheus.yml /etc/prometheus
 ADD general.rules.yml /etc/prometheus
