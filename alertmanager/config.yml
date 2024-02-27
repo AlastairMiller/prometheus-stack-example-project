@@ -1,0 +1,13 @@
+route:
+  receiver: 'example-receiver-test'
+  routes:
+    - receiver: 'example-receiver-prod'
+      match_re:
+        environment: "(production)"
+receivers:
+  - name: 'example-receiver-prod'
+    webhook_configs:
+      - url: https://your.prod.webhook.here
+  - name: 'example-receiver-test'
+    webhook_configs:
+      - url: https://your.webhook.here

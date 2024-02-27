@@ -1,7 +1,6 @@
 
 docker {
-    files 'datasource.yml'
-    copySpec.from('dashboards').into('provisioning')
+    files 'config.yml'
     tag 'latest', "example/${project.name}:latest"
     name "example/${project.name}:${project.version}"
 }
@@ -9,6 +8,6 @@ docker {
 dockerRun{
     name "${project.name}"
     image "example/${project.name}:${project.version}"
-    ports '3000:3000'
+    ports '9093:9093'
     clean true
 }
