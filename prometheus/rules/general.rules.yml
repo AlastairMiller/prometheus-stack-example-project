@@ -1,15 +1,14 @@
 groups:
   - name: general
     rules:
-#      Just some example rules useful for apps that expose jvm metrics
       - alert: ApplicationDown
         expr: up == 0
-        for: 5m
+        for: 10s
         labels:
           severity: critical
         annotations:
           summary: Application '{{ $labels.application }}' in environment '{{ $labels.environment }}' is down
-          description: Application '{{ $labels.application }}' in environment '{{ $labels.environment }}' has been down for more then 5 minutes
+          description: Application '{{ $labels.application }}' in environment '{{ $labels.environment }}' has been down for more then 10 seconds
       - alert: MemoryUsage
         expr: sum(jvm_memory_used_bytes{area="heap"}) by (application, environment) /
           sum(jvm_memory_max_bytes{area="heap"}) by (application, environment) * 100 > 95
@@ -27,3 +26,20 @@ groups:
         annotations:
           summary: 85% or greater disk is being used in application '{{ $labels.application }}'
           description: 85% or greater disk is being used in application '{{ $labels.application }}' in environment {{ $labels.environment }}'
+      - alert: ExampleCounterHighCount
+        expr: test_counter_total >= 5
+        labels:
+          severity: critical
+        annotations:
+          summary: High increment counter value in '{{ $labels.application }}' in environment '{{ $labels.instance }}'
+          description: Application '{{ $labels.application }}' in environment '{{ $labels.instance }}' counter value is
+            high at {{ humanize $value}}
+      - alert: HighExampleLatency
+        expr: method_timed_seconds{method="slowRequest",quantile="0.5"} > 0.01
+        for: 10s
+        labels:
+          severity: critical
+        annotations:
+          summary: Slow example request in '{{ $labels.application }}' in environment '{{ $labels.instance }}'
+          description: Slow example request in '{{ $labels.application }}' in environment '{{ $labels.instance }}'. 
+            The median value is {{ humanize $value}}
