@@ -5,8 +5,8 @@ Example of how a Prometheus alerting stack could look with a Java web service to
 
 Stack contains
   * Prometheus
-  * AlertManager #TODO
-  * Grafana #TODO
+  * AlertManager
+  * Grafana
   * Example of target service
   
   
