@@ -12,8 +12,12 @@ import java.security.SecureRandom;
 @RestController
 public class TestController {
 
-    @Autowired
     MeterRegistry meterRegistry;
+
+    @Autowired
+    TestController(MeterRegistry meterRegistry){
+        this.meterRegistry = meterRegistry;
+    }
 
     @Timed(histogram = true, percentiles = 0.5)
     @GetMapping(value = "/slow")
